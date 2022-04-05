@@ -23,7 +23,7 @@ public class Bootstrap {
             int port = 18080;
 
             if(!NetUtil.isUsableLocalPort(port)) {
-                System.out.println(port +" 端口已经被占用了，排查并关闭本端口的办法hahaha");
+                System.out.println(port +" 端口已经被占用了，排查并关闭本端口的办法");
                 return;
             }
             ServerSocket ss = new ServerSocket(port);
