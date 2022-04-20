@@ -138,6 +138,7 @@ public class MiniBrowser {
     public static byte[] readBytes(InputStream s) throws  IOException{
         int buffer_size = 1024;
         byte[] buffer = new byte[buffer_size];
+        //定义一个输出流，把读到的信息暂时都放在 内存？ 里
         ByteArrayOutputStream boat = new ByteArrayOutputStream();
         while(true){
             int len = s.read(buffer);

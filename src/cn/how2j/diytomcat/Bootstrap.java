@@ -7,6 +7,8 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.log.LogFactory;
+import cn.hutool.system.SystemUtil;
 import http.Request;
 import http.Response;
 
@@ -14,18 +16,25 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Bootstrap {
 
     public static void main(String[] args) {
 
         try {
-            int port = 18080;
 
+            logJVM();
+            int port = 18080;
+/*
             if(!NetUtil.isUsableLocalPort(port)) {
                 System.out.println(port +" 端口已经被占用了，排查并关闭本端口的办法hahahaha");
                 return;
             }
+
+ */
             ServerSocket ss = new ServerSocket(port);
 
             while(true) {
@@ -68,7 +77,8 @@ public class Bootstrap {
                 }
                 System.out.println(uri);
                 if("/".equals(uri)){
-                    String html = "Hello DIY Tomcat from how2j.cn";
+                    String html = "Hello DIY Tomcat from cjs";
+                    //在这里其实调用的是PrintWrite对象的println方法，将html字符串输出，输出到StringWrite的缓冲区
                     response.getWriter().println(html);
                 }else {
                     String fileName = StrUtil.removePrefix(uri,"/");
@@ -81,6 +91,7 @@ public class Bootstrap {
                     }
                 }
 
+                //默认成功，返回状态码为200的处理结果，包装成handle方法
                 handle200(s,response);
             }
         } catch (IOException e) {
@@ -88,6 +99,27 @@ public class Bootstrap {
         }
 
     }
+
+    private static void logJVM() {
+        Map<String,String> infos = new LinkedHashMap<>();
+        infos.put("Server version", "CJS DiyTomcat/1.0.1");
+        infos.put("Server built", "2022-04-21 10:20:22");
+        infos.put("Server number", "1.0.1");
+        infos.put("OS Name\t", SystemUtil.get("os.name"));
+        infos.put("OS Version", SystemUtil.get("os.version"));
+        infos.put("Architecture", SystemUtil.get("os.arch"));
+        infos.put("Java Home", SystemUtil.get("java.home"));
+        infos.put("JVM Version", SystemUtil.get("java.runtime.version"));
+        infos.put("JVM Vendor", SystemUtil.get("java.vm.specification.vendor"));
+
+        Set<String> keys = infos.keySet();
+        for (String key : keys) {
+            LogFactory.get().info(key+":\t\t" + infos.get(key));
+        }
+    }
+
+
+
 
     public static void handle200(Socket s, Response response) throws IOException {
         String contentType = response.getContentType();
