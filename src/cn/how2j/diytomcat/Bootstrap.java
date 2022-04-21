@@ -3,7 +3,9 @@ package cn.how2j.diytomcat;
 
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.MiniBrowser;
+import cn.how2j.diytomcat.util.ThreadPoolUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
@@ -39,66 +41,53 @@ public class Bootstrap {
 
             while(true) {
                 Socket s =  ss.accept();
-                Request request = new Request(s);
-                /* 初始处理request请求的方法，直接对流进行单一简单的处理
-                InputStream is= s.getInputStream();
-                int bufferSize = 1024;
-                byte[] buffer = new byte[bufferSize];
-                is.read(buffer);
-                byte[] buffer = MiniBrowser.readBytes(is);
-                String requestString = new String(buffer,"utf-8");
-                 */
-                //改进处理方法，对长度过于长的流进行判断处理
-                String requestString = request.getRequestString();
-                System.out.println("浏览器的输入信息： \r\n" + requestString);
-                String uri =  request.getUri();
-                System.out.println("Uri： \r\n" + uri);
+                Runnable r = new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            Request request = new Request(s);
+                            Response response = new Response();
+                            String uri = request.getUri();
+                            if(null==uri)
+                                return;
+                            System.out.println(uri);
+                            if("/".equals(uri)){
+                                String html = "Hello DIY Tomcat from cjs";
+                                response.getWriter().println(html);
+                            }
+                            else{
+                                String fileName = StrUtil.removePrefix(uri, "/");
+                                File file = FileUtil.file(Constant.rootFolder,fileName);
+                                if(file.exists()){
+                                    String fileContent = FileUtil.readUtf8String(file);
+                                    response.getWriter().println(fileContent);
 
-                /*初始的服务器进行响应的办法，直接输出流
-                OutputStream os = s.getOutputStream();
-                String response_head = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n\r\n";
-                String responseString = "Hello DIY Tomcat from how2j.cn";
-                responseString = response_head + responseString;
-                os.write(responseString.getBytes());
-                os.flush();
-                s.close();
+                                    if(fileName.equals("timeConsume.html")){
+                                        ThreadUtil.sleep(1000);
+                                    }
 
-                 */
-                //改进的response处理方法，抽象出response类，类内部对消息进行拼装
-                Response response = new Response();
-                /*
-                //直接将要输出内容写进内存，再由返回处理
-                String html = "Hello DIY Tomcat from how2j.cn";
-                response.getWriter().println(html);
-
-                 */
-                if(uri==null){
-                    continue;
-                }
-                System.out.println(uri);
-                if("/".equals(uri)){
-                    String html = "Hello DIY Tomcat from cjs";
-                    //在这里其实调用的是PrintWrite对象的println方法，将html字符串输出，输出到StringWrite的缓冲区
-                    response.getWriter().println(html);
-                }else {
-                    String fileName = StrUtil.removePrefix(uri,"/");
-                    File file = FileUtil.file(Constant.rootFolder,fileName);
-                    if(file.exists()){
-                        String fileContent = FileUtil.readUtf8String(file);
-                        response.getWriter().println(fileContent);
-                    }else{
-                        response.getWriter().println("File Not Found");
+                                }
+                                else{
+                                    response.getWriter().println("File Not Found");
+                                }
+                            }
+                            handle200(s, response);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
+                };
 
-                //默认成功，返回状态码为200的处理结果，包装成handle方法
-                handle200(s,response);
+                ThreadPoolUtil.run(r);
+
             }
         } catch (IOException e) {
+            LogFactory.get().error(e);
             e.printStackTrace();
         }
 
     }
+
 
     private static void logJVM() {
         Map<String,String> infos = new LinkedHashMap<>();
