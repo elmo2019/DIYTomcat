@@ -138,12 +138,12 @@ public class MiniBrowser {
     public static byte[] readBytes(InputStream s) throws  IOException{
         int buffer_size = 1024;
         byte[] buffer = new byte[buffer_size];
-        //定义一个输出流，把读到的信息暂时都放在 内存？ 里
+        //定义一个输出流，把读到的信息暂都放在 内存？ 里
         ByteArrayOutputStream boat = new ByteArrayOutputStream();
         while(true){
-            int len = s.read(buffer);
+            int len = s.read(buffer); //输入流将从socket端口输入的数据流读出，读到buffer数组里
             if(len == -1) break;;
-            boat.write(buffer,0,len);
+            boat.write(buffer,0,len); // 输出流将buffer数组输出到缓存区域
             if(len!=buffer_size) break;;
         }
         return boat.toByteArray();

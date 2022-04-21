@@ -1,6 +1,7 @@
 package cn.how2j.diytomcat;
 
 
+import cn.how2j.diytomcat.catalina.Context;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.MiniBrowser;
 import cn.how2j.diytomcat.util.ThreadPoolUtil;
@@ -18,17 +19,20 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class Bootstrap {
 
+    public static Map<String, Context> contextMap = new HashMap<>();
     public static void main(String[] args) {
 
         try {
 
             logJVM();
+            scanContextsOnWebAppsFolder(); //扫描WebApp文件夹，把所有应用添加到映射，方便对照uri进行查找
             int port = 18080;
 /*
             if(!NetUtil.isUsableLocalPort(port)) {
@@ -48,16 +52,19 @@ public class Bootstrap {
                             Request request = new Request(s);
                             Response response = new Response();
                             String uri = request.getUri();
+
                             if(null==uri)
                                 return;
                             System.out.println(uri);
+                            //一个错误点，必须是先检查uri是否存在才能去获取context对象，否则存在context对象为null
+                            Context context = request.getContext();
                             if("/".equals(uri)){
                                 String html = "Hello DIY Tomcat from cjs";
                                 response.getWriter().println(html);
                             }
                             else{
                                 String fileName = StrUtil.removePrefix(uri, "/");
-                                File file = FileUtil.file(Constant.rootFolder,fileName);
+                                File file = FileUtil.file(context.getDocBase(),fileName);
                                 if(file.exists()){
                                     String fileContent = FileUtil.readUtf8String(file);
                                     response.getWriter().println(fileContent);
@@ -86,6 +93,28 @@ public class Bootstrap {
             e.printStackTrace();
         }
 
+    }
+
+    private static void scanContextsOnWebAppsFolder() {
+        File[] folders = Constant.webappsFolder.listFiles();
+        for (File folder : folders) {
+            if (!folder.isDirectory())
+                continue;
+            loadContext(folder);
+        }
+    }
+
+    private static void loadContext(File folder) {
+        String path = folder.getName();
+        if ("ROOT".equals(path))
+            path = "/";
+        else
+            path = "/" + path;
+
+        String docBase = folder.getAbsolutePath();
+        Context context = new Context(path,docBase);
+
+        contextMap.put(context.getPath(), context);
     }
 
 
