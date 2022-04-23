@@ -62,6 +62,11 @@ public class TestTomcat {
 
         Assert.assertTrue(duration < 3000);
     }
+    //检查是否有404
+    public void test404(){
+        String response = getHttpString("/not_exist.html");
+        containAssert(response,"HTTP/1.1 404 Not Found");
+    }
 
     public void testaIndex(){
         String html = getContentString("/a/index.html");
@@ -72,10 +77,23 @@ public class TestTomcat {
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@b");
     }
 
+
+    //获取http响应的内容
     private String getContentString(String uri) {
         String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
         String content = MiniBrowser.getContentString(url);
         return content;
+    }
+    //获取http响应
+    private String getHttpString(String uri){
+        String url = StrUtil.format("http://{}:{}{}",ip,port,uri);
+        String http = MiniBrowser.getHttpString(url);
+        return http;
+    }
+    //怎加一个 Assert，来判断是否包含
+    private void containAssert(String html,String string){
+        boolean match = StrUtil.containsAny(html,string);
+        Assert.assertTrue(match);
     }
 }
 

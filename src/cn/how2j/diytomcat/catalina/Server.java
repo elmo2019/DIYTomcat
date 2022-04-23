@@ -79,12 +79,23 @@ public class Server {
 
                                 }
                                 else{
-                                    response.getWriter().println("File Not Found");
+                                    //response.getWriter().println("File Not Found");
+                                    handle404(s,uri);
+                                    return;
                                 }
                             }
                             handle200(s, response);
                         } catch (IOException e) {
                             e.printStackTrace();
+                        }
+                        finally{
+                            try {
+                                if(!s.isClosed()){
+                                    s.close();
+                                }
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
                         }
                     }
                 };
@@ -116,7 +127,14 @@ public class Server {
         }
     }
 
-
+    //处理404返回
+    public static void handle404(Socket s,String uri) throws IOException{
+        OutputStream os = s.getOutputStream();
+        String responseText = StrUtil.format(Constant.response_head_404,uri,uri);
+        responseText = Constant.response_head_404 + responseText;
+        byte[] responseByte = responseText.getBytes("utf-8");
+        os.write(responseByte);
+    }
 
 
     public static void handle200(Socket s, Response response) throws IOException {
@@ -133,7 +151,7 @@ public class Server {
 
         OutputStream os = s.getOutputStream();
         os.write(responseBytes);
-        s.close();
+        //s.close();
     }
 
 
