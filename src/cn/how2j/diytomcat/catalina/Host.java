@@ -12,10 +12,12 @@ import java.util.Map;
 public class Host {
     private String name;
     private Map<String, Context> contextMap;
+    private Engine engine;
 
-    public Host(){
+    public Host(String name, Engine engine){
         this.contextMap = new HashMap<>();
         this.name = ServerXMLUtil.getHostName();
+        this.engine=engine;
 
         scanContextsOnWebAppsFolder(); //扫描WebApp文件夹，把所有应用添加到映射，方便对照uri进行查找
         scanContextsInServerXML(); //扫描配置文件
