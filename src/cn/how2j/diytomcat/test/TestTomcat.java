@@ -67,6 +67,10 @@ public class TestTomcat {
         String html = getContentString("/a/index.html");
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@a");
     }
+    public void testbIndex() {
+        String html = getContentString("/b/index.html");
+        Assert.assertEquals(html,"Hello DIY Tomcat from index.html@b");
+    }
 
     private String getContentString(String uri) {
         String url = StrUtil.format("http://{}:{}{}", ip,port,uri);

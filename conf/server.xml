@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server>
+    <Host name = "localhost">
+        <Context path="/b" docBase="/Users/chenjingshu/Documents/Finnal Project/DIYtomcat/b" />
+    </Host>
+</Server>
+

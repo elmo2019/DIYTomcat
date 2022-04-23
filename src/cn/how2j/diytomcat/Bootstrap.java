@@ -2,8 +2,10 @@ package cn.how2j.diytomcat;
 
 
 import cn.how2j.diytomcat.catalina.Context;
+import cn.how2j.diytomcat.catalina.Host;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.MiniBrowser;
+import cn.how2j.diytomcat.util.ServerXMLUtil;
 import cn.how2j.diytomcat.util.ThreadPoolUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.thread.ThreadUtil;
@@ -19,20 +21,17 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Bootstrap {
 
-    public static Map<String, Context> contextMap = new HashMap<>();
+
     public static void main(String[] args) {
 
         try {
 
             logJVM();
-            scanContextsOnWebAppsFolder(); //扫描WebApp文件夹，把所有应用添加到映射，方便对照uri进行查找
+            Host host = new Host();
             int port = 18080;
 /*
             if(!NetUtil.isUsableLocalPort(port)) {
@@ -49,7 +48,7 @@ public class Bootstrap {
                     @Override
                     public void run() {
                         try {
-                            Request request = new Request(s);
+                            Request request = new Request(s,host);
                             Response response = new Response();
                             String uri = request.getUri();
 
@@ -95,27 +94,6 @@ public class Bootstrap {
 
     }
 
-    private static void scanContextsOnWebAppsFolder() {
-        File[] folders = Constant.webappsFolder.listFiles();
-        for (File folder : folders) {
-            if (!folder.isDirectory())
-                continue;
-            loadContext(folder);
-        }
-    }
-
-    private static void loadContext(File folder) {
-        String path = folder.getName();
-        if ("ROOT".equals(path))
-            path = "/";
-        else
-            path = "/" + path;
-
-        String docBase = folder.getAbsolutePath();
-        Context context = new Context(path,docBase);
-
-        contextMap.put(context.getPath(), context);
-    }
 
 
     private static void logJVM() {

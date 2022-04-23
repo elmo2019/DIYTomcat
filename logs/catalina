@@ -1,150 +1,30 @@
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : Server number:		1.0.1
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : OS Name	:		Mac OS X
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : OS Version:		11.2
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : Architecture:		aarch64
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 00:04:01 上午 cn.how2j.diytomcat.Bootstrap logJVM
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.Bootstrap logJVM
 INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 14:25:26 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 14:49:29 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 14:50:14 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.catalina.Context <init>
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
 INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a has finished in 0 ms
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT
-04 21, 2022 23:49:19 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT has finished in 0 ms
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.catalina.Context <init>
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
 INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a has finished in 1 ms
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.catalina.Context <init>
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
 INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT
-04 21, 2022 23:53:22 下午 cn.how2j.diytomcat.catalina.Context <init>
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
 INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT has finished in 0 ms
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server version:		CJS DiyTomcat/1.0.1
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server built:		2022-04-21 10:20:22
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Server number:		1.0.1
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Mac OS X
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : OS Version:		11.2
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Architecture:		aarch64
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_282-b08
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.Bootstrap logJVM
-INFO : JVM Vendor:		Oracle Corporation
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/a has finished in 0 ms
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT
-04 21, 2022 23:59:40 下午 cn.how2j.diytomcat.catalina.Context <init>
-INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/webapps/ROOT has finished in 0 ms
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/b
+04 22, 2022 14:51:01 下午 cn.how2j.diytomcat.catalina.Context <init>
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/DIYtomcat/b has finished in 0 ms
