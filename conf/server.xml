@@ -3,7 +3,7 @@
     <Service name="Catalina">
         <Engine defaultHost="localhost">
             <Host name = "localhost">
-                <Context path="/b" docBase="/Users/chenjingshu/Documents/Finnal Project/DIYtomcat/b" />
+                <Context path="/b" docBase="/Users/chenjingshu/Documents/Final Project1/b" />
             </Host>
         </Engine>
     </Service>

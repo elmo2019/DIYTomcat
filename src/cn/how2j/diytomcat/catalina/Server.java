@@ -3,6 +3,7 @@ package cn.how2j.diytomcat.catalina;
 
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.ThreadPoolUtil;
+import cn.how2j.diytomcat.util.WebXMLUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.ArrayUtil;
@@ -30,21 +31,9 @@ public class Server {
         logJVM();
         init();
     }
-    public void init(){
+    private void init() {
         try {
-
-            //logJVM();
-            //Host host = new Host();
-            //Engine engine = new Engine();
-            //Service service = new Service();
             int port = 18080;
-/*
-            if(!NetUtil.isUsableLocalPort(port)) {
-                System.out.println(port +" 端口已经被占用了，排查并关闭本端口的办法hahahaha");
-                return;
-            }
-
- */
             ServerSocket ss = new ServerSocket(port);
 
             while(true) {
@@ -56,36 +45,33 @@ public class Server {
                             Request request = new Request(s,service);
                             Response response = new Response();
                             String uri = request.getUri();
-
                             if(null==uri)
                                 return;
-                            System.out.println(uri);
-                            //一个错误点，必须是先检查uri是否存在才能去获取context对象，否则存在context对象为null
+                            System.out.println("uri:"+uri);
+
                             Context context = request.getContext();
+
                             if("/500.html".equals(uri)){
                                 throw new Exception("this is a deliberately created exception");
                             }
-                            if("/".equals(uri)){
-                                String html = "Hello DIY Tomcat from how2j.cn";
-                                response.getWriter().println(html);
+
+                            if("/".equals(uri))
+                                uri = WebXMLUtil.getWelcomeFile(request.getContext());
+
+                            String fileName = StrUtil.removePrefix(uri, "/");
+                            File file = FileUtil.file(context.getDocBase(),fileName);
+                            if(file.exists()){
+                                String fileContent = FileUtil.readUtf8String(file);
+                                response.getWriter().println(fileContent);
+
+                                if(fileName.equals("timeConsume.html")){
+                                    ThreadUtil.sleep(1000);
+                                }
+
                             }
                             else{
-                                String fileName = StrUtil.removePrefix(uri, "/");
-                                File file = FileUtil.file(context.getDocBase(),fileName);
-                                if(file.exists()){
-                                    String fileContent = FileUtil.readUtf8String(file);
-                                    response.getWriter().println(fileContent);
-
-                                    if(fileName.equals("timeConsume.html")){
-                                        ThreadUtil.sleep(1000);
-                                    }
-
-                                }
-                                else{
-                                    //response.getWriter().println("File Not Found");
-                                    handle404(s,uri);
-                                    return;
-                                }
+                                handle404(s, uri);
+                                return;
                             }
                             handle200(s, response);
                         } catch (Exception e) {
@@ -94,10 +80,9 @@ public class Server {
                         }
                         finally{
                             try {
-                                if(!s.isClosed()){
+                                if(!s.isClosed())
                                     s.close();
-                                }
-                            } catch (IOException e){
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -105,13 +90,11 @@ public class Server {
                 };
 
                 ThreadPoolUtil.run(r);
-
             }
         } catch (IOException e) {
             LogFactory.get().error(e);
             e.printStackTrace();
         }
-
     }
     private static void logJVM() {
         Map<String,String> infos = new LinkedHashMap<>();

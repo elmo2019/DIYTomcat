@@ -68,12 +68,14 @@ public class TestTomcat {
         containAssert(response,"HTTP/1.1 404 Not Found");
     }
 
-    public void testaIndex(){
-        String html = getContentString("/a/index.html");
+    public void testaIndex() {
+        String html = getContentString("/a");
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@a");
     }
+
+    @Test
     public void testbIndex() {
-        String html = getContentString("/b/index.html");
+        String html = getContentString("/b");
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@b");
     }
 
