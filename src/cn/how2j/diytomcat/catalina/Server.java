@@ -62,8 +62,11 @@ public class Server {
                             System.out.println(uri);
                             //一个错误点，必须是先检查uri是否存在才能去获取context对象，否则存在context对象为null
                             Context context = request.getContext();
+                            if("/500.html".equals(uri)){
+                                throw new Exception("this is a deliberately created exception");
+                            }
                             if("/".equals(uri)){
-                                String html = "Hello DIY Tomcat from cjs";
+                                String html = "Hello DIY Tomcat from how2j.cn";
                                 response.getWriter().println(html);
                             }
                             else{
@@ -85,8 +88,9 @@ public class Server {
                                 }
                             }
                             handle200(s, response);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            LogFactory.get().error(e);
+                            handle500(s,e);
                         }
                         finally{
                             try {
@@ -127,8 +131,10 @@ public class Server {
         }
     }
 
+
+
     //处理404返回
-    public static void handle404(Socket s,String uri) throws IOException{
+    protected static void handle404(Socket s,String uri) throws IOException{
         OutputStream os = s.getOutputStream();
         String responseText = StrUtil.format(Constant.response_head_404,uri,uri);
         responseText = Constant.response_head_404 + responseText;
@@ -152,6 +158,33 @@ public class Server {
         OutputStream os = s.getOutputStream();
         os.write(responseBytes);
         //s.close();
+    }
+
+    protected void handle500(Socket s, Exception e) {
+        try {
+            OutputStream os = s.getOutputStream();
+            StackTraceElement stes[] = e.getStackTrace();
+            StringBuffer sb = new StringBuffer();
+            sb.append(e.toString());
+            sb.append("\r\n");
+            for (StackTraceElement ste : stes) {
+                sb.append("\t");
+                sb.append(ste.toString());
+                sb.append("\r\n");
+            }
+
+            String msg = e.getMessage();
+
+            if (null != msg && msg.length() > 20)
+                msg = msg.substring(0, 19);
+
+            String text = StrUtil.format(Constant.textFormat_500, msg, e.toString(), sb.toString());
+            text = Constant.response_head_500 + text;
+            byte[] responseBytes = text.getBytes("utf-8");
+            os.write(responseBytes);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
 

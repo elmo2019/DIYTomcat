@@ -34,13 +34,9 @@ public class TestTomcat {
     @Test
     public void testHelloTomcat() {
         String html = getContentString("/");
-        Assert.assertEquals(html,"Hello DIY Tomcat from cjs");
+        Assert.assertEquals(html,"Hello DIY Tomcat from how2j.cn");
     }
 
-    public void testaHtml(){
-        String html = getContentString("/a.html");
-        Assert.assertEquals(html,"Hello DIY Tomcat from a.html");
-    }
 
     //添加耗时任务的时间检测，创建三个访问线程
     public void testTimeConsumeHtml() throws InterruptedException {
@@ -61,6 +57,10 @@ public class TestTomcat {
         long duration = timeInterval.intervalMs();
 
         Assert.assertTrue(duration < 3000);
+    }
+    public void test500() {
+        String response  = getHttpString("/500.html");
+        containAssert(response, "HTTP/1.1 500 Internal Server Error");
     }
     //检查是否有404
     public void test404(){
