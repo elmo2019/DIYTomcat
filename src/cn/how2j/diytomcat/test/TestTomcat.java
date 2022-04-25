@@ -59,6 +59,19 @@ public class TestTomcat {
         Assert.assertTrue(duration < 3000);
     }
 
+    @Test
+    public void testPNG() {
+        byte[] bytes = getContentBytes("/logo.png");
+        int pngFileLength = 1672;
+        Assert.assertEquals(pngFileLength, bytes.length);
+    }
+    @Test
+    public void testPDF() {
+        byte[] bytes = getContentBytes("/etf.pdf");
+        int pngFileLength = 3590775;
+        Assert.assertEquals(pngFileLength, bytes.length);
+    }
+
     //检查是否能获取解析其他文件类型
     @Test
     public void testaTxt() {
@@ -87,6 +100,14 @@ public class TestTomcat {
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@b");
     }
 
+    //和文本文件获取方式不同，用另一个方法获取二进制文件
+    private byte[] getContentBytes(String uri) {
+        return getContentBytes(uri,false);
+    }
+    private byte[] getContentBytes(String uri,boolean gzip) {
+        String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
+        return MiniBrowser.getContentBytes(url,false);
+    }
 
     //获取http响应的内容
     private String getContentString(String uri) {

@@ -121,7 +121,7 @@ public class MiniBrowser {
             }
 
             result = baos.toByteArray();*/
-            result = readBytes(is);
+            result = readBytes(is,true);
             client.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,7 +135,7 @@ public class MiniBrowser {
         return result;
 
     }
-    public static byte[] readBytes(InputStream s) throws  IOException{
+    public static byte[] readBytes(InputStream s , boolean fully) throws  IOException{
         int buffer_size = 1024;
         byte[] buffer = new byte[buffer_size];
         //定义一个输出流，把读到的信息暂都放在 内存？ 里
@@ -144,9 +144,10 @@ public class MiniBrowser {
             int len = s.read(buffer); //输入流将从socket端口输入的数据流读出，读到buffer数组里
             if(len == -1) break;;
             boat.write(buffer,0,len); // 输出流将buffer数组输出到缓存区域
-            if(len!=buffer_size) break;;
+            if(!fully && len!=buffer_size) break;;
         }
-        return boat.toByteArray();
+        byte[] result = boat.toByteArray();
+        return result;
     }
 }
 
