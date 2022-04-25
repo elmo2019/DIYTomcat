@@ -58,6 +58,14 @@ public class TestTomcat {
 
         Assert.assertTrue(duration < 3000);
     }
+
+    //检查是否能获取解析其他文件类型
+    @Test
+    public void testaTxt() {
+        String response  = getHttpString("/a.txt");
+        containAssert(response, "Content-Type: text/plain");
+    }
+
     public void test500() {
         String response  = getHttpString("/500.html");
         containAssert(response, "HTTP/1.1 500 Internal Server Error");

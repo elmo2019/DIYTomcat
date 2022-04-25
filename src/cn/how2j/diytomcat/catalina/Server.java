@@ -8,6 +8,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.XmlUtil;
 import cn.hutool.log.LogFactory;
 import cn.hutool.system.SystemUtil;
 import http.Request;
@@ -48,7 +49,7 @@ public class Server {
                             if(null==uri)
                                 return;
                             System.out.println("uri:"+uri);
-
+                            System.out.println("requst"+request.getRequestString());
                             Context context = request.getContext();
 
                             if("/500.html".equals(uri)){
@@ -60,7 +61,17 @@ public class Server {
 
                             String fileName = StrUtil.removePrefix(uri, "/");
                             File file = FileUtil.file(context.getDocBase(),fileName);
+                            //多级目录判断 ？
+                            if (!file.isFile()){//因为只有目录没有文件，所有判断不是文件就行了
+                                uri=uri+"/"+WebXMLUtil.getWelcomeFile(request.getContext());
+                                fileName = StrUtil.removePrefix(uri, "/");
+                                file=new File(context.getDocBase(),fileName);
+                            }
                             if(file.exists()){
+                                String extName = FileUtil.extName(file);
+                                String mimeType = WebXMLUtil.getMimeType(extName);
+                                response.setContentType(mimeType);
+
                                 String fileContent = FileUtil.readUtf8String(file);
                                 response.getWriter().println(fileContent);
 
