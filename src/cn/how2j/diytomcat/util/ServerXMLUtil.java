@@ -1,8 +1,7 @@
 package cn.how2j.diytomcat.util;
 
-import cn.how2j.diytomcat.catalina.Context;
-import cn.how2j.diytomcat.catalina.Engine;
-import cn.how2j.diytomcat.catalina.Host;
+import cn.how2j.diytomcat.catalina.*;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Range;
 import org.jsoup.Jsoup;
@@ -15,6 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServerXMLUtil {
+
+    //该方法用来解析获取Connector属性
+    public static List<Connector> getConnectors(Service service){
+        List<Connector> results = new ArrayList<>();
+        String xml = FileUtil.readUtf8String(Constant.serverXmlFile);
+        Document d = Jsoup.parse(xml);
+
+        Elements es = d.select("Connector");
+        for(Element e : es){
+            int port = Convert.toInt(e.attr("port"));
+            Connector c = new Connector(service);
+            c.setPort(port);
+            results.add(c);
+        }
+        return results;
+    }
+
     //该方法用来解析XML配置文件中的Context属性
     public static List<Context> getContext(){
         List<Context> result = new ArrayList<>();
