@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 public class Response extends BaseResponse {
+    private int status;
     private StringWriter stringWriter;
     private PrintWriter writer;
     private String contentType;
@@ -20,6 +21,13 @@ public class Response extends BaseResponse {
         this.stringWriter = new StringWriter();
         this.writer = new PrintWriter(stringWriter);
         this.contentType = "text/html";
+    }
+
+    public void setStatus(int status){
+        this.status = status;
+    }
+    public int getStatus(){
+        return status;
     }
 
     public String getContentType() {

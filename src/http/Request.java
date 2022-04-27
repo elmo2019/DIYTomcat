@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Request extends BaseRequest {
+    private String method;
     private Context context;
     private String requestString;
     private String uri;
@@ -37,12 +38,16 @@ public class Request extends BaseRequest {
             return;
         parseUri();
         parseContext();
+        parseMethod();
         if(!"/".equals(context.getPath())){
             uri = StrUtil.removePrefix(uri, context.getPath());
             if(StrUtil.isEmpty(uri))
                 uri = "/";
         }
 
+    }
+    private void parseMethod(){
+        method = StrUtil.subBefore(requestString," ",false);
     }
 
     private void parseContext() {
