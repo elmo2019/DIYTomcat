@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 import cn.how2j.diytomcat.catalina.Context;
 import cn.hutool.core.io.FileUtil;
 
+//解析 MimeType
 public class WebXMLUtil {
     //创建一个map映射去保存，文件扩展名和返回文件类型信息的映射
     private static Map<String,String> mimeTypeMapping = new HashMap<>();

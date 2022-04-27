@@ -60,7 +60,7 @@ public class TestTomcat {
     }
     //判断servlet功能雏形是否正常
     public void testhello(){
-        String html = getContentString("/hello");
+        String html = getContentString("/j2ee/hello");
         Assert.assertEquals(html,"hello DIY Tomcat from HelloServlet");
     }
 

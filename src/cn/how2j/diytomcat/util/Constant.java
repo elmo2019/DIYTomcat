@@ -52,4 +52,7 @@ public class Constant {
     public static final File serverXmlFile = new File(confFolder,"server.xml");
 
     public static final File webXmlFile = new File(confFolder, "web.xml");
+
+    //配置servlet的文件
+    public static final File contextXmlFile = new File(confFolder,"context.xml");
 }

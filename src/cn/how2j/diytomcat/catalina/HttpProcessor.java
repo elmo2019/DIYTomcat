@@ -6,6 +6,7 @@ import cn.how2j.diytomcat.webappservlet.HelloServlet;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.LogFactory;
 import http.Request;
@@ -26,48 +27,37 @@ public class HttpProcessor {
             System.out.println("uri:"+uri);
             System.out.println("requst"+request.getRequestString());
             Context context = request.getContext();
-
-            if("/500.html".equals(uri)){
-                throw new Exception("this is a deliberately created exception");
-            }
-
-            //在实现servlet容器部分做的硬编码
-            if("/hello".equals(uri)){
-                HelloServlet helloServlet = new HelloServlet();
-                helloServlet.doGet(request,response);
-            }
-
-            if("/".equals(uri))
-                uri = WebXMLUtil.getWelcomeFile(request.getContext());
-
-            String fileName = StrUtil.removePrefix(uri, "/");
-            File file = FileUtil.file(context.getDocBase(),fileName);
-            //多级目录判断 ？
-            if (!file.isFile()){//因为只有目录没有文件，所有判断不是文件就行了
-                uri=uri+"/"+WebXMLUtil.getWelcomeFile(request.getContext());
-                fileName = StrUtil.removePrefix(uri, "/");
-                file=new File(context.getDocBase(),fileName);
-            }
-            if(file.exists()){
-                String extName = FileUtil.extName(file);
-                String mimeType = WebXMLUtil.getMimeType(extName);
-                response.setContentType(mimeType);
-                //现在改为直接读取二进制文件
-                byte[] body = FileUtil.readBytes(file);
-                response.setBody(body);
-                                /*
-                                String fileContent = FileUtil.readUtf8String(file);
-                                response.getWriter().println(fileContent);
-                                 */
-
-                if(fileName.equals("timeConsume.html")){
-                    ThreadUtil.sleep(1000);
+            String servletClassname = context.getServletClassName(uri);
+            if(null !=servletClassname){
+                Object servletObject = ReflectUtil.newInstance(servletClassname);
+                ReflectUtil.invoke(servletObject,"doGet",request,response);
+            }else {
+                if("/500.html".equals(uri)){
+                    throw new Exception("this is a deliberately created exception");
                 }
+                else{
+                    if("/".equals(uri))
+                        uri = WebXMLUtil.getWelcomeFile(request.getContext());
 
-            }
-            else{
-                handle404(s, uri);
-                return;
+                    String fileName = StrUtil.removePrefix(uri, "/");
+                    File file = FileUtil.file(context.getDocBase(),fileName);
+
+                    if(file.exists()){
+                        String extName = FileUtil.extName(file);
+                        String mimeType = WebXMLUtil.getMimeType(extName);
+                        response.setContentType(mimeType);
+
+                        byte body[] = FileUtil.readBytes(file);
+                        response.setBody(body);
+
+                        if(fileName.equals("timeConsume.html"))
+                            ThreadUtil.sleep(1000);
+                    }
+                    else{
+                        handle404(s, uri);
+                        return;
+                    }
+                }
             }
             handle200(s, response);
         } catch (Exception e) {
