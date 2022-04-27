@@ -58,6 +58,11 @@ public class TestTomcat {
 
         Assert.assertTrue(duration < 3000);
     }
+    //判断servlet功能雏形是否正常
+    public void testhello(){
+        String html = getContentString("/hello");
+        Assert.assertEquals(html,"hello DIY Tomcat from HelloServlet");
+    }
 
     @Test
     public void testPNG() {
