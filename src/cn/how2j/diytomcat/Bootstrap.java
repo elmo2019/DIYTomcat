@@ -2,6 +2,7 @@ package cn.how2j.diytomcat;
 
 
 import cn.how2j.diytomcat.catalina.*;
+import cn.how2j.diytomcat.classloader.CommonClassLoader;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.MiniBrowser;
 import cn.how2j.diytomcat.util.ServerXMLUtil;
@@ -17,6 +18,7 @@ import http.Request;
 import http.Response;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -25,9 +27,22 @@ import java.util.*;
 public class Bootstrap {
 
 
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.start();
+    public static void main(String[] args) throws Exception{
+        CommonClassLoader commonClassLoader = new CommonClassLoader();
+
+        Thread.currentThread().setContextClassLoader(commonClassLoader);
+
+        String serverClassName = "cn.how2j.diytomcat.catalina.Server";
+
+        //采用反射的方式启动
+        Class<?> serverClazz = commonClassLoader.loadClass(serverClassName);
+
+        Object serverObject = serverClazz.newInstance();
+
+        Method m = serverClazz.getMethod("start");
+
+        m.invoke(serverObject);
+        System.out.println(serverClazz.getClassLoader());
     }
 }
 

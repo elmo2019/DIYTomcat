@@ -48,3 +48,233 @@ INFO : Starting ProtocolHandler [http-bio-18081]
 INFO : Starting ProtocolHandler [http-bio-18082]
 04 28, 2022 00:05:45 上午 cn.how2j.diytomcat.catalina.Server start
 INFO : Server startup in 2 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 44 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 1 ms
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 28, 2022 22:14:51 下午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 2 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 52 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 1 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 0 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 3 ms
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector error
+ERROR: Address already in use (Bind failed)
+java.net.BindException: Address already in use (Bind failed)
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387)
+	at java.net.ServerSocket.bind(ServerSocket.java:392)
+	at java.net.ServerSocket.<init>(ServerSocket.java:254)
+	at java.net.ServerSocket.<init>(ServerSocket.java:145)
+	at cn.how2j.diytomcat.catalina.Connector.run(Connector.java:36)
+	at java.lang.Thread.run(Thread.java:748)
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector error
+ERROR: Address already in use (Bind failed)
+java.net.BindException: Address already in use (Bind failed)
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387)
+	at java.net.ServerSocket.bind(ServerSocket.java:392)
+	at java.net.ServerSocket.<init>(ServerSocket.java:254)
+	at java.net.ServerSocket.<init>(ServerSocket.java:145)
+	at cn.how2j.diytomcat.catalina.Connector.run(Connector.java:36)
+	at java.lang.Thread.run(Thread.java:748)
+04 28, 2022 23:43:15 下午 cn.how2j.diytomcat.catalina.Connector error
+ERROR: Address already in use (Bind failed)
+java.net.BindException: Address already in use (Bind failed)
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387)
+	at java.net.ServerSocket.bind(ServerSocket.java:392)
+	at java.net.ServerSocket.<init>(ServerSocket.java:254)
+	at java.net.ServerSocket.<init>(ServerSocket.java:145)
+	at cn.how2j.diytomcat.catalina.Connector.run(Connector.java:36)
+	at java.lang.Thread.run(Thread.java:748)
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 36 ms
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 0 ms
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 28, 2022 23:43:39 下午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 3 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 50 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 1 ms
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 28, 2022 23:45:27 下午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 2 ms
