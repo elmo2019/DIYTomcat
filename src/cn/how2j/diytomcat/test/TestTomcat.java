@@ -39,6 +39,7 @@ public class TestTomcat {
 
 
     //添加耗时任务的时间检测，创建三个访问线程
+    @Test
     public void testTimeConsumeHtml() throws InterruptedException {
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(20,20,60, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(10));
@@ -59,6 +60,7 @@ public class TestTomcat {
         Assert.assertTrue(duration < 3000);
     }
     //判断servlet功能雏形是否正常
+    @Test
     public void testhello(){
         String html = getContentString("/j2ee/hello");
         Assert.assertEquals(html,"hello DIY Tomcat from HelloServlet");
@@ -83,17 +85,18 @@ public class TestTomcat {
         String response  = getHttpString("/a.txt");
         containAssert(response, "Content-Type: text/plain");
     }
-
+    @Test
     public void test500() {
         String response  = getHttpString("/500.html");
         containAssert(response, "HTTP/1.1 500 Internal Server Error");
     }
     //检查是否有404
+    @Test
     public void test404(){
         String response = getHttpString("/not_exist.html");
         containAssert(response,"HTTP/1.1 404 Not Found");
     }
-
+    @Test
     public void testaIndex() {
         String html = getContentString("/a");
         Assert.assertEquals(html,"Hello DIY Tomcat from index.html@a");

@@ -57,7 +57,7 @@ public class DefaultServlet extends HttpServlet {
 
             response.setStatus(Constant.CODE_200);
         }else{
-            response.setStatus(Constant.CODE_200);
+            response.setStatus(Constant.CODE_404);
         }
     }
 }

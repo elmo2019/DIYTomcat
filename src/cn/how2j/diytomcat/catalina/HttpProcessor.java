@@ -29,6 +29,7 @@ public class HttpProcessor {
             System.out.println("uri:"+uri);
             System.out.println("requst"+request.getRequestString());
             Context context = request.getContext();
+
             String servletClassname = context.getServletClassName(uri);
             if(null !=servletClassname){
                 InvokerServlet.getInstance().service(request,response);

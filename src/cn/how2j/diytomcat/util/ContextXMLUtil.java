@@ -8,7 +8,7 @@ import org.jsoup.nodes.Element;
 public class ContextXMLUtil {
 
     public static
-    String getWatchedResourse(){
+    String getWatchedResource(){
         try{
             String xml = FileUtil.readUtf8String(Constant.contextXmlFile);
             Document d = Jsoup.parse(xml);
