@@ -59,6 +59,13 @@ public class TestTomcat {
 
         Assert.assertTrue(duration < 3000);
     }
+    //实现web类加载器功能时判断
+    @Test
+    public void testJavawebHello() {
+        String html = getContentString("/javaweb/hello");
+        Assert.assertEquals(html,"Hello DIY Tomcat from HelloServlet@javaweb");
+    }
+
     //判断servlet功能雏形是否正常
     @Test
     public void testhello(){

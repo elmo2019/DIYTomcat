@@ -48,3 +48,280 @@ INFO : Starting ProtocolHandler [http-bio-18081]
 INFO : Starting ProtocolHandler [http-bio-18082]
 04 30, 2022 00:19:20 上午 cn.how2j.diytomcat.catalina.Server start
 INFO : Server startup in 2 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 64 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web has finished in 2 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 0 ms
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 30, 2022 00:29:15 上午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 3 ms
+04 30, 2022 00:29:20 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: InvocationTargetException: null
+cn.hutool.core.exceptions.UtilException: InvocationTargetException: null
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:750)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:770)
+	at cn.how2j.diytomcat.servlets.InvokerServlet.service(InvokerServlet.java:40)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:35)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:748)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:619)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	... 12 more
+04 30, 2022 00:29:20 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: InvocationTargetException: null
+cn.hutool.core.exceptions.UtilException: InvocationTargetException: null
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:750)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:770)
+	at cn.how2j.diytomcat.servlets.InvokerServlet.service(InvokerServlet.java:40)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:35)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:748)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:619)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	... 12 more
+04 30, 2022 00:29:20 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: this is a deliberately created exception
+java.lang.RuntimeException: this is a deliberately created exception
+	at cn.how2j.diytomcat.servlets.DefaultServlet.service(DefaultServlet.java:38)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:37)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+04 30, 2022 00:31:33 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: InvocationTargetException: null
+cn.hutool.core.exceptions.UtilException: InvocationTargetException: null
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:750)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:770)
+	at cn.how2j.diytomcat.servlets.InvokerServlet.service(InvokerServlet.java:40)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:35)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:748)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:619)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	... 12 more
+04 30, 2022 00:31:33 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: InvocationTargetException: null
+cn.hutool.core.exceptions.UtilException: InvocationTargetException: null
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:750)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:770)
+	at cn.how2j.diytomcat.servlets.InvokerServlet.service(InvokerServlet.java:40)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:35)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cn.hutool.core.util.ReflectUtil.invoke(ReflectUtil.java:748)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:619)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	... 12 more
+04 30, 2022 00:31:33 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: this is a deliberately created exception
+java.lang.RuntimeException: this is a deliberately created exception
+	at cn.how2j.diytomcat.servlets.DefaultServlet.service(DefaultServlet.java:38)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:37)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 47 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web has finished in 1 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 0 ms
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 30, 2022 00:33:27 上午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 2 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/j2ee has finished in 49 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/a has finished in 0 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/webapps/ROOT has finished in 0 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Final Project1/b
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Final Project1/b has finished in 0 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deploying web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Context deploy
+INFO : Deployment of web application directory /Users/chenjingshu/Documents/Finnal Project/javaweb/web has finished in 2 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server version:		CJS DiyTomcat/1.0.1
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server built:		2022-04-21 10:20:22
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Server number:		1.0.1
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Name	:		Mac OS X
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : OS Version:		11.2
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Architecture:		aarch64
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : Java Home:		/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Version:		1.8.0_282-b08
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server logJVM
+INFO : JVM Vendor:		Oracle Corporation
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18080]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18081]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector init
+INFO : Initializing ProtocolHandler [http-bio-18082]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Service init
+INFO : Initialization processed in 1 ms
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18080]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18081]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Connector start
+INFO : Starting ProtocolHandler [http-bio-18082]
+04 30, 2022 00:35:35 上午 cn.how2j.diytomcat.catalina.Server start
+INFO : Server startup in 4 ms
+04 30, 2022 00:36:04 上午 cn.how2j.diytomcat.catalina.HttpProcessor error
+ERROR: this is a deliberately created exception
+java.lang.RuntimeException: this is a deliberately created exception
+	at cn.how2j.diytomcat.servlets.DefaultServlet.service(DefaultServlet.java:38)
+	at cn.how2j.diytomcat.catalina.HttpProcessor.execute(HttpProcessor.java:37)
+	at cn.how2j.diytomcat.catalina.Connector$1.run(Connector.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)

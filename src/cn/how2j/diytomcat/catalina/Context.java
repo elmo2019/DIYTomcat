@@ -1,4 +1,5 @@
 package cn.how2j.diytomcat.catalina;
+import cn.how2j.diytomcat.classloader.WebappClassLoader;
 import cn.how2j.diytomcat.exception.WebConfigDuplicatedException;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.ContextXMLUtil;
@@ -25,6 +26,10 @@ public class Context {
     private Map<String, String> servletName_className;
     private Map<String, String> className_servletName;
 
+    //为每一个context类 （web多应用）新建一个自己的类对象
+    private WebappClassLoader webappClassLoader;
+
+
     public Context(String path, String docBase) {
         this.path = path;
         this.docBase = docBase;
@@ -35,8 +40,15 @@ public class Context {
         this.servletName_className = new HashMap<>();
         this.className_servletName = new HashMap<>();
 
+        ClassLoader commonClassLoader = Thread.currentThread().getContextClassLoader();
+        this.webappClassLoader = new WebappClassLoader(docBase,commonClassLoader);
+
         deploy();
 
+    }
+    //获取当前context类（web应用）的加载器
+    public WebappClassLoader getWebappClassLoader(){
+        return webappClassLoader;
     }
 
     public String getPath(){
