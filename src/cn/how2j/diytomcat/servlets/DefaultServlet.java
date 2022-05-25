@@ -42,7 +42,7 @@ public class DefaultServlet extends HttpServlet {
         }
 
         String fileName = StrUtil.removePrefix(uri,"/");
-        File file = FileUtil.file(context.getDocBase(),fileName);
+        File file = FileUtil.file(request.getRealPath(fileName));
 
         if(file.exists()){
             String extName = FileUtil.extName(file);

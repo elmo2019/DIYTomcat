@@ -9,11 +9,13 @@ import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.LogFactory;
+import http.ApplicationContext;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.*;
 
@@ -35,7 +37,13 @@ public class Context {
     private boolean reloadable;
     private ContextFileChangeWatcher contextFileChangeWatcher;
 
+    //增加servletContext属性
+    private ServletContext servletContext;
+
+
     public Context(String path, String docBase,Host host, boolean reloadable) {
+        this.servletContext = new ApplicationContext(this);
+
         TimeInterval timeInterval = DateUtil.timer();
         this.host = host;
         this.reloadable=reloadable;
@@ -57,6 +65,10 @@ public class Context {
         deploy();
         LogFactory.get().info("Deployment of web application directory {} has finished in {} ms", this.docBase,timeInterval.intervalMs());
 
+    }
+    //获取servletContext属性
+    public ServletContext getServletContext(){
+        return servletContext;
     }
 
     //提供热加载属性的方法

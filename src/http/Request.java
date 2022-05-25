@@ -95,5 +95,11 @@ public class Request extends BaseRequest {
         return requestString;
     }
 
+    public ServletContext getServletContext() {
+        return context.getServletContext();
+    }
+    public String getRealPath(String path) {
+        return getServletContext().getRealPath(path);
+    }
 
 }
