@@ -39,13 +39,30 @@
         * 本项目放弃了tomcat中原本的 Digester 模式
 
 ### 请求分析
-    在之前的 response 业务中，只针对判断了需要返回那个文件。其实，正式情况下会发生文件没有的请求错误(400),服务器处理错误(500)，还有未指定位置就返回欢迎页面。
+- 在之前的 response 业务中，只针对判断了需要返回那个文件。其实，正式情况下会发生文件没有的请求错误(400),服务器处理错误(500)，还有未指定位置就返回欢迎页面。
     
 ## 4.26
    - 在此之前，通过硬返回的方式直接告诉游览器（客户端）返回文件类型是 txt/html 类型，但是实际情况下我们可能会返回各种各样的文件类型。在webXML文件中添加文件类型映射。再返回文件时，获取文件类型。用Map来存储映射。
    - 因为要传输不止html文件，要传二进制字节流的形式，既要改造文件读取方式，不再是读取文件中的字符串，直接读取文件的二进制字节流。
    - 在Apache Tomcat 里，支持多端口，在server.xml 文件里配置多端口，向其他组件一样新建类，解析获取Connector类，因为多端口，每个端口都要独立解决请求和返回问题。将之前的Server类代码迁移到Connector类中
-   - 此时在 Connect类中既要监听端口，又要处理接受和返回。将业务拆封。
+   - 此时在 Connect类中既要监听端口，又要处理接受和返回。将业务拆封，把处理http请求的业务放在httpProcessor中
+   
+## 逐步实现Servlet容器功能
+### 简单的servlet响应
+- 为了能够能将response和request对象传入svelte类中，必须使他们继承HttpServletResponse 接口，直接继承又显得冗余，所以创建basedrequest & basedresponse
+### 配置servlet
+- 之前是直接路径访问，通过实现配置文件和解析配置文件功能，实现servlet的配置
+- 配置文件中通过4个map保存servlet之间雷名，绝对路径，相对路径名的映射
+### 拆分处理类
+    在此之前，主要实现了处理对静态资源的请求，为了处理servlet请求，必须将业务拆分
+- DefaultServlet, 用来处理静态资源。
+  提供 service 方法，根据 请求的uri 获取 ServletClassName ，然后实例化，接着调用其 service 方法。因为目标 servlet 实现了 HttpServlet ,所以一定提供了 service 方法。 这个 service 方法实会根据 request 的 Method ，访问对应的 doGet 或者 doPost。 单例模式
+- InvokerServelet, 用来处理Servlet。实际上就是怕HttpProcessor 里面的处理代码拆分出来，新创建状态码属性，两种处理都能使用，设置状态码。
+- JspServlet 处理jsp文件
+
+### 实现公共类加载器
+- 为什么要自己写tomcat自己的类加载器？Servlet涉及到动态加载，在不同的Web应用下可能会存在相同类名的类，通过重写自己的类加载器，保证不会出错。
+- 分为公共类加载器和应用类加载器。
  
         
         
