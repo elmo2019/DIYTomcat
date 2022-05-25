@@ -31,8 +31,8 @@ public class ServerXMLUtil {
         return results;
     }
 
-    //该方法用来解析XML配置文件中的Context属性
-    public static List<Context> getContext(){
+    //该方法用来解析XML配置文件中的Context属性，   更新迭代，传入Host host 参数
+    public static List<Context> getContext(Host host){
         List<Context> result = new ArrayList<>();
         String xml = FileUtil.readUtf8String(Constant.serverXmlFile);
         Document d = Jsoup.parse(xml);
@@ -40,7 +40,8 @@ public class ServerXMLUtil {
         for(Element e : es){
             String path = e.attr("path");
             String docBase = e.attr("docBase");
-            Context context = new Context(path,docBase);
+            boolean reloadable = Convert.toBool(e.attr("reloadable"),true);
+            Context context = new Context(path,docBase,host,reloadable);
             result.add(context);
         }
         return result;

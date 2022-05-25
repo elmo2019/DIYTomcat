@@ -3,6 +3,7 @@ import cn.how2j.diytomcat.classloader.WebappClassLoader;
 import cn.how2j.diytomcat.exception.WebConfigDuplicatedException;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.ContextXMLUtil;
+import cn.how2j.diytomcat.watcher.ContextFileChangeWatcher;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.io.FileUtil;
@@ -29,8 +30,16 @@ public class Context {
     //为每一个context类 （web多应用）新建一个自己的类对象
     private WebappClassLoader webappClassLoader;
 
+    //实现热加载，增加属性
+    private Host host;
+    private boolean reloadable;
+    private ContextFileChangeWatcher contextFileChangeWatcher;
 
-    public Context(String path, String docBase) {
+    public Context(String path, String docBase,Host host, boolean reloadable) {
+        TimeInterval timeInterval = DateUtil.timer();
+        this.host = host;
+        this.reloadable=reloadable;
+
         this.path = path;
         this.docBase = docBase;
         //解析servlet
@@ -43,9 +52,23 @@ public class Context {
         ClassLoader commonClassLoader = Thread.currentThread().getContextClassLoader();
         this.webappClassLoader = new WebappClassLoader(docBase,commonClassLoader);
 
+
+        LogFactory.get().info("Deploying web application directory {}", this.docBase);
         deploy();
+        LogFactory.get().info("Deployment of web application directory {} has finished in {} ms", this.docBase,timeInterval.intervalMs());
 
     }
+
+    //提供热加载属性的方法
+    public boolean isReloadable(){
+        return reloadable;
+    }
+    public void setReloadable(boolean reloadable){
+        this.reloadable = reloadable;
+    }
+
+
+
     //获取当前context类（web应用）的加载器
     public WebappClassLoader getWebappClassLoader(){
         return webappClassLoader;
@@ -135,10 +158,22 @@ public class Context {
     }
     //主要是为了打印日志
     private void deploy() {
-        TimeInterval timeInterval = DateUtil.timer();
-        LogFactory.get().info("Deploying web application directory {}", this.docBase);
+
         init();
-        LogFactory.get().info("Deployment of web application directory {} has finished in {} ms",this.getDocBase(),timeInterval.intervalMs());
+        if(reloadable){
+            contextFileChangeWatcher = new ContextFileChangeWatcher(this);
+            contextFileChangeWatcher.start();
+        }
+
+    }
+    //停止方法，把类加载器和热加载监听器关闭
+    public void stop(){
+        webappClassLoader.stop();
+        contextFileChangeWatcher.stop();
+    }
+    //重载该context类
+    public void reload(){
+        host.reload(this);
     }
 
     public String getServletClassName(String uri) {
