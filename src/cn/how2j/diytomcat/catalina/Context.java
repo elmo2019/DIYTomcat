@@ -16,6 +16,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import java.io.File;
 import java.util.*;
 
@@ -40,6 +42,9 @@ public class Context {
     //增加servletContext属性
     private ServletContext servletContext;
 
+    //实现Servlet单例
+    private Map<Class<?>, HttpServlet> servletPool;
+
 
     public Context(String path, String docBase,Host host, boolean reloadable) {
         this.servletContext = new ApplicationContext(this);
@@ -60,12 +65,24 @@ public class Context {
         ClassLoader commonClassLoader = Thread.currentThread().getContextClassLoader();
         this.webappClassLoader = new WebappClassLoader(docBase,commonClassLoader);
 
+        this.servletPool = new HashMap<>();
+
 
         LogFactory.get().info("Deploying web application directory {}", this.docBase);
         deploy();
         LogFactory.get().info("Deployment of web application directory {} has finished in {} ms", this.docBase,timeInterval.intervalMs());
 
     }
+    //实现Servlet池子
+    public synchronized HttpServlet getServlet(Class<?> clazz) throws InstantiationException, IllegalAccessException, ServletException{
+        HttpServlet servlet = servletPool.get(clazz);
+        if(null==servlet){
+            servlet = (HttpServlet) clazz.newInstance();
+            servletPool.put(clazz,servlet);
+        }
+        return servlet;
+    }
+
     //获取servletContext属性
     public ServletContext getServletContext(){
         return servletContext;
