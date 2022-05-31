@@ -4,17 +4,21 @@ import cn.how2j.diytomcat.exception.WebConfigDuplicatedException;
 import cn.how2j.diytomcat.util.Constant;
 import cn.how2j.diytomcat.util.ContextXMLUtil;
 import cn.how2j.diytomcat.watcher.ContextFileChangeWatcher;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.LogFactory;
 import http.ApplicationContext;
+import http.StandardServletConfig;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +49,11 @@ public class Context {
     //实现Servlet单例
     private Map<Class<?>, HttpServlet> servletPool;
 
+    //实现生命周期功能
+    private Map<String, Map<String, String>> servlet_className_init_params;
+    //实现自启动
+    private List<String> loadOnStartupServletClassNames;
+
 
     public Context(String path, String docBase,Host host, boolean reloadable) {
         this.servletContext = new ApplicationContext(this);
@@ -67,18 +76,71 @@ public class Context {
 
         this.servletPool = new HashMap<>();
 
+        this.servlet_className_init_params = new HashMap<>();
+
+        this.loadOnStartupServletClassNames = new ArrayList<>();
 
         LogFactory.get().info("Deploying web application directory {}", this.docBase);
         deploy();
         LogFactory.get().info("Deployment of web application directory {} has finished in {} ms", this.docBase,timeInterval.intervalMs());
 
     }
+    //对需要做自启动的类做自启动
+    public void handleLoadOnStartup() {
+        for (String loadOnStartupServletClassName : loadOnStartupServletClassNames) {
+            try {
+                Class<?> clazz = webappClassLoader.loadClass(loadOnStartupServletClassName);
+                getServlet(clazz);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //从web.xml 解析自启动参数
+    public void parseLoadOnStartup(Document d){
+        Elements es = d.select("load-on-startup");
+        for (Element e : es) {
+            String loadOnStartupServletClassName = e.parent().select("servlet-class").text();
+            loadOnStartupServletClassNames.add(loadOnStartupServletClassName);
+        }
+    }
+    //从web.xml 解析Servlet生命周期的初始化参数
+    private void parseServletInitParams(Document d) {
+
+        Elements servletClassNameElements = d.select("servlet-class");
+        for (Element servletClassNameElement : servletClassNameElements) {
+            String servletClassName = servletClassNameElement.text();
+            Elements initElements = servletClassNameElement.parent().select("init-param");
+            if (initElements.isEmpty())
+                continue;
+            Map<String, String> initParams = new HashMap<>();
+
+            for (Element element : initElements) {
+                String name = element.select("param-name").get(0).text();
+                String value = element.select("param-value").get(0).text();
+                initParams.put(name, value);
+            }
+
+            servlet_className_init_params.put(servletClassName, initParams);
+        }
+
+		System.out.println("class_name_init_params:" + servlet_className_init_params);
+    }
     //实现Servlet池子
-    public synchronized HttpServlet getServlet(Class<?> clazz) throws InstantiationException, IllegalAccessException, ServletException{
+    public synchronized HttpServlet  getServlet(Class<?> clazz)
+            throws InstantiationException, IllegalAccessException, ServletException {
         HttpServlet servlet = servletPool.get(clazz);
-        if(null==servlet){
+        if (null == servlet) {
             servlet = (HttpServlet) clazz.newInstance();
-            servletPool.put(clazz,servlet);
+            ServletContext servletContext = this.getServletContext();
+            String className = clazz.getName();
+            String servletName = className_servletName.get(className);
+            Map<String, String> initParameters = servlet_className_init_params.get(className);
+            System.out.println(initParameters);
+            ServletConfig servletConfig = new StandardServletConfig(servletContext, servletName, initParameters);
+            servlet.init(servletConfig);
+            servletPool.put(clazz, servlet);
         }
         return servlet;
     }
@@ -184,6 +246,17 @@ public class Context {
         String xml = FileUtil.readUtf8String(contextWebXmlFile);
         Document d = Jsoup.parse(xml);
         parseServletMapping(d);
+        parseServletInitParams(d);
+        parseLoadOnStartup(d);
+        handleLoadOnStartup();
+    }
+
+    //销毁所有的servlets
+    private void destroyServlets() {
+        Collection<HttpServlet> servlets = servletPool.values();
+        for (HttpServlet servlet : servlets) {
+            servlet.destroy();
+        }
     }
     //主要是为了打印日志
     private void deploy() {
@@ -199,6 +272,7 @@ public class Context {
     public void stop(){
         webappClassLoader.stop();
         contextFileChangeWatcher.stop();
+        destroyServlets();
     }
     //重载该context类
     public void reload(){

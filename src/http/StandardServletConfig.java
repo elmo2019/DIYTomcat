@@ -2,6 +2,7 @@ package http;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,22 +23,23 @@ public class StandardServletConfig implements ServletConfig {
 
 
     @Override
-    public String getServletName() {
-        return null;
-    }
-
-    @Override
-    public ServletContext getServletContext() {
-        return null;
-    }
-
-    @Override
-    public String getInitParameter(String s) {
-        return null;
+    public String getInitParameter(String name) {
+        // TODO Auto-generated method stub
+        return initParameters.get(name);
     }
 
     @Override
     public Enumeration<String> getInitParameterNames() {
-        return null;
+        return Collections.enumeration(initParameters.keySet());
+    }
+
+    @Override
+    public ServletContext getServletContext() {
+        return servletContext;
+    }
+
+    @Override
+    public String getServletName() {
+        return servletName;
     }
 }

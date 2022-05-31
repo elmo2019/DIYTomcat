@@ -12,6 +12,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +32,28 @@ public class TestTomcat {
             System.out.println("检测到 diy tomcat已经启动，开始进行单元测试");
         }
     }
+    //测试 GET ，  POST 方法
+
+    //@Test
+    public void testgetParam() {
+        String uri = "/javaweb/param";
+        String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
+        Map<String,Object> params = new HashMap<>();
+        params.put("name","meepo");
+        String html = MiniBrowser.getContentString(url, params, true);
+        Assert.assertEquals(html,"get name:meepo");
+    }
+
+    @Test
+    public void testpostParam() {
+        String uri = "/javaweb/param";
+        String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
+        Map<String,Object> params = new HashMap<>();
+        params.put("name","meepo");
+        String html = MiniBrowser.getContentString(url, params, false);
+        Assert.assertEquals(html,"post name:meepo");
+    }
+
 
     @Test
     public void testHelloTomcat() {

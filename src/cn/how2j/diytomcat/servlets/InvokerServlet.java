@@ -39,7 +39,8 @@ public class InvokerServlet extends HttpServlet {
             //Object servletObject = ReflectUtil.newInstance(servletClass);
             //去Servlet池子中找
             Object servletObject = context.getServlet(servletClass);
-            ReflectUtil.invoke(servletObject, "doGet", request, response);
+            //String method = request.getMethod();
+            ReflectUtil.invoke(servletObject, "service", request, response);
             response.setStatus(Constant.CODE_200);
 
         } catch (Exception e) {

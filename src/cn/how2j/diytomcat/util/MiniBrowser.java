@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ZipUtil;
+import cn.hutool.http.HttpUtil;
+
 public class MiniBrowser {
 
     public static void main(String[] args) throws Exception {
@@ -19,16 +23,32 @@ public class MiniBrowser {
         System.out.println(httpString);
     }
 
-    public static byte[] getContentBytes(String url) {
-        return getContentBytes(url, false);
+    public static byte[] getContentBytes(String url, Map<String,Object> params, boolean isGet) {
+        return getContentBytes(url, false,params,isGet);
     }
 
-    public static String getContentString(String url) {
-        return getContentString(url,false);
+    public static byte[] getContentBytes(String url, boolean gzip) {
+        return getContentBytes(url, gzip,null,true);
+    }
+
+    public static byte[] getContentBytes(String url) {
+        return getContentBytes(url, false,null,true);
+    }
+
+    public static String getContentString(String url, Map<String,Object> params, boolean isGet) {
+        return getContentString(url,false,params,isGet);
     }
 
     public static String getContentString(String url, boolean gzip) {
-        byte[] result = getContentBytes(url, gzip);
+        return getContentString(url, gzip, null, true);
+    }
+
+    public static String getContentString(String url) {
+        return getContentString(url, false, null, true);
+    }
+
+    public static String getContentString(String url, boolean gzip, Map<String,Object> params, boolean isGet) {
+        byte[] result = getContentBytes(url, gzip,params,isGet);
         if(null==result)
             return null;
         try {
@@ -38,8 +58,8 @@ public class MiniBrowser {
         }
     }
 
-    public static byte[] getContentBytes(String url, boolean gzip) {
-        byte[] response = getHttpBytes(url,gzip);
+    public static byte[] getContentBytes(String url, boolean gzip, Map<String,Object> params, boolean isGet) {
+        byte[] response = getHttpBytes(url,gzip,params,isGet);
         byte[] doubleReturn = "\r\n\r\n".getBytes();
 
         int pos = -1;
@@ -61,15 +81,24 @@ public class MiniBrowser {
     }
 
     public static String getHttpString(String url,boolean gzip) {
-        byte[]  bytes=getHttpBytes(url,gzip);
-        return new String(bytes).trim();
+        return getHttpString(url, gzip, null, true);
     }
 
     public static String getHttpString(String url) {
-        return getHttpString(url,false);
+        return getHttpString(url, false, null, true);
     }
 
-    public static byte[] getHttpBytes(String url,boolean gzip) {
+    public static String getHttpString(String url,boolean gzip, Map<String,Object> params, boolean isGet) {
+        byte[]  bytes=getHttpBytes(url,gzip,params,isGet);
+        return new String(bytes).trim();
+    }
+
+    public static String getHttpString(String url, Map<String,Object> params, boolean isGet) {
+        return getHttpString(url,false,params,isGet);
+    }
+
+    public static byte[] getHttpBytes(String url,boolean gzip, Map<String,Object> params, boolean isGet) {
+        String method = isGet?"GET":"POST";
         byte[] result = null;
         try {
             URL u = new URL(url);
@@ -93,7 +122,12 @@ public class MiniBrowser {
             if(path.length()==0)
                 path = "/";
 
-            String firstLine = "GET " + path + " HTTP/1.1\r\n";
+            if(null!=params && isGet){
+                String paramsString = HttpUtil.toParams(params);
+                path = path + "?" + paramsString;
+            }
+
+            String firstLine = method + " " + path + " HTTP/1.1\r\n";
 
             StringBuffer httpRequestString = new StringBuffer();
             httpRequestString.append(firstLine);
@@ -103,24 +137,16 @@ public class MiniBrowser {
                 httpRequestString.append(headerLine);
             }
 
+            if(null!=params && !isGet){
+                String paramsString = HttpUtil.toParams(params);
+                httpRequestString.append("\r\n");
+                httpRequestString.append(paramsString);
+            }
+
             PrintWriter pWriter = new PrintWriter(client.getOutputStream(), true);
             pWriter.println(httpRequestString);
             InputStream is = client.getInputStream();
-            /*
-            int buffer_size = 1024;
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte buffer[] = new byte[buffer_size];
-            while(true) {
-                int length = is.read(buffer);
-                if(-1==length)
-                    break;
-                baos.write(buffer, 0, length);
-                if(length!=buffer_size)
-                    break;
-            }
-
-            result = baos.toByteArray();*/
             result = readBytes(is,true);
             client.close();
         } catch (Exception e) {
@@ -135,19 +161,20 @@ public class MiniBrowser {
         return result;
 
     }
-    public static byte[] readBytes(InputStream s , boolean fully) throws  IOException{
+
+    public static byte[] readBytes(InputStream is, boolean fully) throws IOException {
         int buffer_size = 1024;
-        byte[] buffer = new byte[buffer_size];
-        //定义一个输出流，把读到的信息暂都放在 内存？ 里
-        ByteArrayOutputStream boat = new ByteArrayOutputStream();
-        while(true){
-            int len = s.read(buffer); //输入流将从socket端口输入的数据流读出，读到buffer数组里
-            if(len == -1) break;;
-            boat.write(buffer,0,len); // 输出流将buffer数组输出到缓存区域
-            if(!fully && len!=buffer_size) break;;
+        byte buffer[] = new byte[buffer_size];
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        while(true) {
+            int length = is.read(buffer);
+            if(-1==length)
+                break;
+            baos.write(buffer, 0, length);
+            if(!fully && length!=buffer_size)
+                break;
         }
-        byte[] result = boat.toByteArray();
+        byte[] result =baos.toByteArray();
         return result;
     }
 }
-

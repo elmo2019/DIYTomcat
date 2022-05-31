@@ -1,4 +1,4 @@
-package http;
+package cn.how2j.diytomcat.http;
 
 import javax.servlet.*;
 import javax.servlet.descriptor.JspConfigDescriptor;
