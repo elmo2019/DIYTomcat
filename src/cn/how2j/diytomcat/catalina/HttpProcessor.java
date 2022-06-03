@@ -3,6 +3,7 @@ package cn.how2j.diytomcat.catalina;
 import cn.how2j.diytomcat.servlets.DefaultServlet;
 import cn.how2j.diytomcat.servlets.InvokerServlet;
 import cn.how2j.diytomcat.util.Constant;
+import cn.how2j.diytomcat.util.SessionManager;
 import cn.how2j.diytomcat.util.WebXMLUtil;
 import cn.how2j.diytomcat.webappservlet.HelloServlet;
 import cn.hutool.core.io.FileUtil;
@@ -14,6 +15,7 @@ import cn.hutool.log.LogFactory;
 import http.Request;
 import http.Response;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,8 +28,9 @@ public class HttpProcessor {
             String uri = request.getUri();
             if(null==uri)
                 return;
-            System.out.println("uri:"+uri);
-            System.out.println("requst"+request.getRequestString());
+            //System.out.println("uri:"+uri);
+            //System.out.println("requst"+request.getRequestString());
+            prepareSession(request,response);
             Context context = request.getContext();
 
             String servletClassname = context.getServletClassName(uri);
@@ -58,6 +61,12 @@ public class HttpProcessor {
             }
         }
     }
+    //准备session
+    public void prepareSession(Request request,Response response){
+        String jsessionid = request.getJSessionFromCookie();
+        HttpSession session = SessionManager.getSession(jsessionid,request,response);
+        request.setSession(session);
+    }
 
     //处理404返回
     protected static void handle404(Socket s,String uri) throws IOException{
@@ -72,7 +81,9 @@ public class HttpProcessor {
     public static void handle200(Socket s, Response response) throws IOException {
         String contentType = response.getContentType();
         String headText = Constant.response_head_200;
-        headText = StrUtil.format(headText,contentType);
+        String cookiesHeader = response.getCookiesHeader();
+        headText = StrUtil.format(headText, contentType, cookiesHeader);
+        //headText = StrUtil.format(headText,contentType);
         byte[] head = headText.getBytes();
 
         byte[] body = response.getBody();

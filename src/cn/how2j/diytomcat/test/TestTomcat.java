@@ -5,6 +5,7 @@ package cn.how2j.diytomcat.test;
 import cn.how2j.diytomcat.util.MiniBrowser;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
 import org.jsoup.helper.DataUtil;
@@ -12,6 +13,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -32,9 +37,51 @@ public class TestTomcat {
             System.out.println("检测到 diy tomcat已经启动，开始进行单元测试");
         }
     }
-    //测试 GET ，  POST 方法
+    //测试session功能
+    @Test
+    public void testSession() throws IOException {
+        String jsessionid = getContentString("/javaweb/setSession");
+        if(null!=jsessionid)
+            jsessionid = jsessionid.trim();
+        String url = StrUtil.format("http://{}:{}{}", ip,port,"/javaweb/getSession");
+        URL u = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+        conn.setRequestProperty("Cookie","JSESSIONID="+jsessionid);
+        conn.connect();
+        InputStream is = conn.getInputStream();
+        String html = IoUtil.read(is, "utf-8");
+        containAssert(html,"Gareen(session)");
+    }
 
-    //@Test
+
+    //testgetCookie 测试
+    @Test
+    public void testgetCookie() throws IOException {
+        String url = StrUtil.format("http://{}:{}{}", ip,port,"/javaweb/getCookie");
+        URL u = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+        conn.setRequestProperty("Cookie","name=Gareen(cookie)");
+        conn.connect();
+        InputStream is = conn.getInputStream();
+        String html = IoUtil.read(is, "utf-8");
+        containAssert(html,"name:Gareen(cookie)");
+    }
+
+    //测试获取头信息功能
+    @Test
+    public void testheader() {
+        String html = getContentString("/javaweb/header");
+        Assert.assertEquals(html,"how2j mini brower / java1.8");
+    }
+    //测试cookie
+    @Test
+    public void testsetCookie() {
+        String html = getHttpString("/javaweb/setCookie");
+        containAssert(html,"Set-Cookie: name=Gareen(cookie); Expires=");
+    }
+
+    //测试 GET ，  POST 方法
+    @Test
     public void testgetParam() {
         String uri = "/javaweb/param";
         String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
