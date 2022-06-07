@@ -24,6 +24,8 @@ public class Response extends BaseResponse {
     //实现cookie功能
     private List<Cookie> cookies;
 
+    //客户端跳转路径
+    private String redirectPath;
     public Response(){
         this.stringWriter = new StringWriter();
         this.writer = new PrintWriter(stringWriter);
@@ -54,6 +56,12 @@ public class Response extends BaseResponse {
             }
         }
         return sb.toString();
+    }
+    public String getRedirectPath(){
+        return this.redirectPath;
+    }
+    public void sendRedirect(String redirect) throws IOException {
+        this.redirectPath = redirect;
     }
 
     //cookie的get set 方法

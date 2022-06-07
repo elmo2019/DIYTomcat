@@ -1,10 +1,7 @@
 package http;
 
 import cn.how2j.diytomcat.Bootstrap;
-import cn.how2j.diytomcat.catalina.Context;
-import cn.how2j.diytomcat.catalina.Engine;
-import cn.how2j.diytomcat.catalina.Host;
-import cn.how2j.diytomcat.catalina.Service;
+import cn.how2j.diytomcat.catalina.*;
 import cn.how2j.diytomcat.util.MiniBrowser;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
@@ -28,7 +25,10 @@ public class Request extends BaseRequest {
     private Socket socket;
     //private Host host;
     //private Engine engine;
-    private Service service;
+    //gzip功能阶段去除
+    //private Service service;
+
+    private Connector connector;
 
     //实现获取参数功能
     private String queryString;
@@ -43,11 +43,19 @@ public class Request extends BaseRequest {
     //实现获取session功能
     private HttpSession session;
 
-    public Request(Socket socket, Service service) throws IOException {
+
+    //支持服务端跳转
+    private boolean forwarded;
+    //实现服务端跳转传参
+    private Map<String, Object> attributesMap;
+
+    public Request(Socket socket, Connector connector) throws IOException {
         this.socket = socket;
-        this.service = service;
+        //this.service = service;
+        this.connector = connector;
         this.parameterMap = new HashMap<>();
         this.headerMap = new HashMap<>();
+        this.attributesMap = new HashMap<>();
         parseHttpRequest();
         if(StrUtil.isEmpty(requestString))
             return;
@@ -65,6 +73,41 @@ public class Request extends BaseRequest {
         //System.out.println("显示请求字符串     "+queryString);
         parseCookies();
     }
+    //重写服务端穿参的各种方法
+    public void removeAttribute(String name) {
+        attributesMap.remove(name);
+    }
+    public void setAttribute(String name, Object value) {
+        attributesMap.put(name, value);
+    }
+    public Object getAttribute(String name) {
+        return attributesMap.get(name);
+    }
+    public Enumeration<String> getAttributeNames(){
+        Set<String> keys = attributesMap.keySet();
+        return Collections.enumeration(keys);
+    }
+    //实现服务端跳转功能
+    public RequestDispatcher getRequestDispatcher(String uri){
+        return new ApplicationRequestDispatcher(uri);
+    }
+    public Socket getSocket(){
+        return socket;
+    }
+    public void setUri(String uri){
+        this.uri = uri;
+    }
+    public boolean isForwarded(){
+        return forwarded;
+    }
+    public void setForwarded(boolean forwarded){
+        this.forwarded = forwarded;
+    }
+
+    public Connector getConnector(){
+        return connector;
+    }
+
     //从cookie中获取sessionid
     public String getJSessionFromCookie(){
         if(null == cookies)
@@ -198,6 +241,7 @@ public class Request extends BaseRequest {
     }
 
     private void parseContext() {
+        Service service = connector.getService();
         Engine engine = service.getEngine();
         context = engine.getDefaultHost().getContext(uri);
         if(null!=context)

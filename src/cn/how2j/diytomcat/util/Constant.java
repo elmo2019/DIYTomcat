@@ -9,11 +9,22 @@ public class Constant {
     public static final int CODE_302 = 302;
     public static final int CODE_404 = 404;
     public static final int CODE_500 = 500;
+    public static final String workFolder = SystemUtil.get("user.dir") + File.separator + "work";
+
+    public static final String response_head_302 =
+            "HTTP/1.1 302 Found\r\nLocation: {}\r\n\r\n";
+
+    public static final String response_head_200_gzip =
+            "HTTP/1.1 200 OK\r\nContent-Type: {}{}\r\n" +
+                    "Content-Encoding:gzip" +
+                    "\r\n\r\n";
 
     public static final String response_head_200 =
             "HTTP/1.1 200 OK\r\n" +
                     "Content-Type: {}{}" +
                     "\r\n\r\n";
+
+
     /*
     public final static String response_head_200  =
             "HTTP/1.1 200 OK\r\n" +

@@ -15,7 +15,32 @@ import java.util.List;
 
 public class ServerXMLUtil {
 
+    //增加方法解析gzip功能的四个属性
+    public static List<Connector> getConnectors(Service service) {
+        List<Connector> result = new ArrayList<>();
+        String xml = FileUtil.readUtf8String(Constant.serverXmlFile);
+        Document d = Jsoup.parse(xml);
+        Elements es = d.select("Connector");
+        for (Element e : es) {
+            int port = Convert.toInt(e.attr("port"));
+            String compression = e.attr("compression");
+            int compressionMinSize = Convert.toInt(e.attr("compressionMinSize"), 0);
+            String noCompressionUserAgents = e.attr("noCompressionUserAgents");
+            String compressableMimeType = e.attr("compressableMimeType");
+            Connector c = new Connector(service);
+            c.setPort(port);
+            c.setCompression(compression);
+            c.setCompressableMimeType(compressableMimeType);
+            c.setNoCompressionUserAgents(noCompressionUserAgents);
+            c.setCompressableMimeType(compressableMimeType);
+            c.setCompressionMinSize(compressionMinSize);
+            result.add(c);
+        }
+        return result;
+    }
+
     //该方法用来解析获取Connector属性
+    /*
     public static List<Connector> getConnectors(Service service){
         List<Connector> results = new ArrayList<>();
         String xml = FileUtil.readUtf8String(Constant.serverXmlFile);
@@ -30,6 +55,8 @@ public class ServerXMLUtil {
         }
         return results;
     }
+
+     */
 
     //该方法用来解析XML配置文件中的Context属性，   更新迭代，传入Host host 参数
     public static List<Context> getContext(Host host){

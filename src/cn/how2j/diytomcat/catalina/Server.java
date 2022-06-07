@@ -35,6 +35,7 @@ public class Server {
         logJVM();
         init();
         LogFactory.get().info("Server startup in {} ms",timeInterval.intervalMs());
+        System.out.println("DIYTOMCAT 启动成功");
     }
     private void init() {
         service.start();

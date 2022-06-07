@@ -1,4 +1,4 @@
-package cn.how2j.diytomcat.http;
+package http;
 
 import java.io.File;
 import java.io.InputStream;
@@ -25,7 +25,7 @@ import javax.servlet.descriptor.JspConfigDescriptor;
 
 import cn.how2j.diytomcat.catalina.Context;
 //import com.sun.prism.impl.BaseContext;
-import http.BaseServletContext;
+import cn.how2j.diytomcat.http.BaseServletContext;
 
 public class ApplicationContext extends BaseServletContext {
 

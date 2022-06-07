@@ -8,6 +8,7 @@ import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.ZipUtil;
 import org.jsoup.helper.DataUtil;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -36,6 +37,58 @@ public class TestTomcat {
         else {
             System.out.println("检测到 diy tomcat已经启动，开始进行单元测试");
         }
+    }
+    //测试动态部署war
+    @Test
+    public void testJavaweb1Hello() {
+        String html = getContentString("/javaweb1/hello");
+        containAssert(html,"Hello DIY Tomcat from HelloServlet@javaweb");
+    }
+
+    //测试静态部署war
+    @Test
+    public void testJavaweb0Hello() {
+        String html = getContentString("/javaweb0/hello");
+        containAssert(html,"Hello DIY Tomcat from HelloServlet@javaweb");
+    }
+
+    //测试服务端跳转传参
+    @Test
+    public void testServerJumpWithAttributes(){
+        String http_servlet = getHttpString("/javaweb/jump2");
+        containAssert(http_servlet,"Hello DIY Tomcat from HelloServlet@javaweb, the name is gareen");
+    }
+
+    //测试服务端跳转
+    @Test
+    public void testServerJump(){
+        String http_servlet = getHttpString("/javaweb/jump2");
+        containAssert(http_servlet,"Hello DIY Tomcat from HelloServlet");
+    }
+
+    //测试客户端跳转功能
+    @Test
+    public void testClientJump(){
+        String http_servlet = getHttpString("/javaweb/jump1");
+        containAssert(http_servlet,"HTTP/1.1 302 Found");
+        String http_jsp = getHttpString("/javaweb/jump1.jsp");
+        containAssert(http_jsp,"HTTP/1.1 302 Found");
+    }
+
+    //对于Jsp的测试
+    @Test
+    public void testJsp() {
+        String html = getContentString("/javaweb/");
+        Assert.assertEquals(html, "hello jsp@javaweb");
+    }
+
+    //测试 Gzip 功能
+    @Test
+    public void testGzip() {
+        byte[] gzipContent = getContentBytes("/",true);
+        byte[] unGzipContent = ZipUtil.unGzip(gzipContent);
+        String html = new String(unGzipContent);
+        Assert.assertEquals(html, "Hello DIY Tomcat from how2j.cn");
     }
     //测试session功能
     @Test
@@ -201,7 +254,7 @@ public class TestTomcat {
     }
     private byte[] getContentBytes(String uri,boolean gzip) {
         String url = StrUtil.format("http://{}:{}{}", ip,port,uri);
-        return MiniBrowser.getContentBytes(url,false);
+        return MiniBrowser.getContentBytes(url,gzip);
     }
 
     //获取http响应的内容
